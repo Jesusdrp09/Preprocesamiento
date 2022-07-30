@@ -3,7 +3,6 @@ import os
 def preprocesamiento():
     #dataframe
     dataframe = pandas.read_csv("datos.csv", delimiter=",")
-    # print(dataframe)
     abreviaciones = pandas.read_csv("abreviaciones.csv", delimiter=";")
     contracciones = pandas.read_csv("contracciones.csv", delimiter=";")
     tweets = pandas.DataFrame(data=dataframe)
@@ -19,9 +18,8 @@ def preprocesamiento():
     #Reemplazando nombres de usuario    
     tweets.iloc[:,10].replace(to_replace=r'@[\w]{1,15}', value="username", regex=True, inplace=True)
     
-    tweets.to_csv("datos.csv")
     #Guardando los cambios los cambios
-    # os.remove("datos.csv")
-    # tweets.to_csv("datos.csv")
+    tweets.to_csv("datos.csv")
+    
 
 
