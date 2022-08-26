@@ -14,7 +14,7 @@ def preprocesamiento():
         
     #Reemplazando abreviaciones
     for i in range(len(abreviaciones['abreviacion'])):
-        tweets.iloc[:,10].replace(to_replace=r""+abreviaciones['abreviacion'][i], value = abreviaciones['palabra'][i], regex=True, inplace=True)
+        tweets.iloc[:,10].replace(to_replace=abreviaciones['abreviacion'][i]+'\s', value=f" {abreviaciones['palabra'][i]} ", regex=True, inplace=True)
 
     #Reemplazando nombres de usuario    
     tweets.iloc[:,10].replace(to_replace=r'@[\w]{1,15}', value="username", regex=True, inplace=True)
