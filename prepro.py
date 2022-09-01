@@ -1,5 +1,4 @@
 import pandas
-import os
 def preprocesamiento():
     #dataframe
     dataframe = pandas.read_csv("datos.csv", delimiter=",")
@@ -19,7 +18,7 @@ def preprocesamiento():
     tweets.iloc[:,10].replace(to_replace=r'@[\w]{1,15}', value="username", regex=True, inplace=True)
     
     #Guardando los cambios los cambios
-    tweets.to_csv("datos.csv")
+    tweets.to_csv("preprocesamiento.csv")
     
 
 
