@@ -6,6 +6,7 @@ def preprocesamiento():
     dataframe = pandas.read_csv("datos.csv", delimiter=",", header=None)
     abreviaciones = pandas.read_csv("abreviaciones.csv", delimiter=";")
     contracciones = pandas.read_csv("contracciones.csv", delimiter=";")
+    etiquetas = pandas.read_csv("etiquetas.csv", delimiter=";")
     tweets = pandas.DataFrame(data=dataframe)
 
     #Reemplazando contracciones
@@ -18,7 +19,17 @@ def preprocesamiento():
 
     #Reemplazando nombres de usuario    
     tweets.iloc[:,10].replace(to_replace=r'@[\w]{1,15}', value="username", regex=True, inplace=True)
+
+    #Añadir etiquetas(Reemplazar simbolos por etiquetas)
+    for i in range(len(etiquetas['simbolos'])):
+        tweets.iloc[:,10].replace(to_replace=etiquetas['simbolos'][i], value= etiquetas['etiquetas'][i], regex=True, inplace=True)
     
+    #Reemplazo de Urls
+    tweets.iloc[:,10].replace("http\S+", "", regex=True, inplace=True)
+
+    #Reemplazo de numeros
+    tweets.iloc[:,10].replace("[0-9]+", "", regex=True, inplace=True)
+
     #Guardando los cambios los cambios
     tweets.to_csv("preprocesamiento.csv")
     
