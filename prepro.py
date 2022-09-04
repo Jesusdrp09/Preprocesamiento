@@ -25,12 +25,12 @@ def preprocesamiento():
         tweets.iloc[:,10].replace(to_replace=etiquetas['simbolos'][i], value= etiquetas['etiquetas'][i], regex=True, inplace=True)
     
     #Reemplazo de Urls
-    tweets.iloc[:,10].replace("http\S+", "", regex=True, inplace=True)
+    tweets.iloc[:,10].replace("http\S+", "URL", regex=True, inplace=True)
 
-    #Reemplazo de numeros
+    #Eliminación de numeros
     tweets.iloc[:,10].replace("[0-9]+", "", regex=True, inplace=True)
 
-    #Guardando los cambios los cambios
+    #Guardando los cambios
     tweets.to_csv("preprocesamiento.csv")
     
 

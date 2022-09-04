@@ -10,7 +10,7 @@ file = open("datos.csv", "w")
 
 config = twint.Config()
 config.Limit = 10
-config.Search = "feliz OR contento OR enojado"
+config.Search = "feliz OR contento OR enojado OR :)"
 config.Lang = "es"
 config.Since = "2020-03-14"
 config.Near = "Colombia"
