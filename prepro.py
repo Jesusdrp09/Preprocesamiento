@@ -1,5 +1,10 @@
 from sys import flags
 import pandas
+import nltk
+import re
+import os
+import string
+from nltk.corpus import stopwords
 
 def preprocesamiento():
     #dataframe
@@ -29,6 +34,17 @@ def preprocesamiento():
 
     #Reemplazo de numeros
     tweets.iloc[:,10].replace("[0-9]+", "", regex=True, inplace=True)
+
+    #Remover stopwords
+    stop_words = set(stopwords.words('spanish'))
+    for i in stop_words:
+        tweets.iloc[:,10].replace(to_replace=r'\s'+i+'\s', value= " ", regex=True, inplace=True)
+    
+    #Poner en minúscula
+        tweets.iloc[:,10].lower()
+
+    #Eliminar signos de puntuación
+        tweets.iloc[:,10].replace(to_replace=string.puntuaction, value= "", regex=True, inplace=True)
 
     #Guardando los cambios los cambios
     tweets.to_csv("preprocesamiento.csv")
