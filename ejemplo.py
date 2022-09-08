@@ -9,8 +9,8 @@ os.remove("datos.csv")
 file = open("datos.csv", "w") 
 
 config = twint.Config()
-config.Limit = 10
-config.Search = "feliz OR contento OR enojado OR :)"
+config.Limit = 50
+config.Search = "covid"
 config.Lang = "es"
 config.Since = "2020-03-14"
 config.Near = "Colombia"
