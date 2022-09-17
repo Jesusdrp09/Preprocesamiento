@@ -29,10 +29,10 @@ def preprocesamiento():
         tweets.iloc[:,10].replace(to_replace=etiquetas['simbolos'][i], value= etiquetas['etiquetas'][i], regex=True, inplace=True)
     
     #Reemplazo de Urls
-    tweets.iloc[:,10].replace("http\S+", "URL", regex=True, inplace=True)
+    tweets.iloc[:,10].replace("http\S+", " URL ", regex=True, inplace=True)
 
     #Eliminación de numeros
-    tweets.iloc[:,10].replace("[0-9]+", "", regex=True, inplace=True)
+    tweets.iloc[:,10].replace("[0-9]+", " ", regex=True, inplace=True)
 
     #Remover stopwords
     stop_words = set(stopwords.words('spanish'))
@@ -43,7 +43,7 @@ def preprocesamiento():
         tweets.iloc[:,10] = tweets.iloc[:,10].str.lower()
 
     #Eliminar signos de puntuación
-        tweets.iloc[:,10].replace(to_replace=string.punctuation, value= "", regex=True, inplace=True)
+        tweets.iloc[:,10].replace(to_replace=r"[\, | \. | \: | \; | \.{3}] ", value= "", regex=True, inplace=True)
 
     #Guardando los cambios los cambios
     tweets.to_csv("preprocesamiento.csv")
