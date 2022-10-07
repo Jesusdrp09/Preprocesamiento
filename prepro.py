@@ -1,6 +1,4 @@
-from sys import flags
 import pandas
-import string
 import nltk
 from nltk.corpus import stopwords
 nltk.download('stopwords')

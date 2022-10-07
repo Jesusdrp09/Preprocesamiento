@@ -5,7 +5,7 @@ import twint
 import os 
 import prepro
 
-os.remove("datos.csv")
+#os.remove("datos.csv")
 file = open("datos.csv", "w") 
 
 config = twint.Config()
