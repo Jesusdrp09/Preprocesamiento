@@ -21,10 +21,6 @@ def preprocesamiento():
 
     #Reemplazando nombres de usuario    
     tweets.iloc[:,10].replace(to_replace=r'@[\w]{1,15}', value="username", regex=True, inplace=True)
-
-    #Añadir etiquetas(Reemplazar simbolos por etiquetas)
-    for i in range(len(etiquetas['simbolos'])):
-        tweets.iloc[:,10].replace(to_replace=etiquetas['simbolos'][i], value= etiquetas['etiquetas'][i], regex=True, inplace=True)
     
     #Reemplazo de Urls
     tweets.iloc[:,10].replace("http\S+", " URL ", regex=True, inplace=True)
@@ -32,6 +28,10 @@ def preprocesamiento():
     #Eliminación de numeros
     tweets.iloc[:,10].replace("[0-9]+", " ", regex=True, inplace=True)
 
+    #Añadir etiquetas(Reemplazar simbolos por etiquetas)
+    for i in range(len(etiquetas['simbolos'])):
+        tweets.iloc[:,10].replace(to_replace=etiquetas['simbolos'][i], value= etiquetas['etiquetas'][i], regex=True, inplace=True)
+    
     #Remover stopwords
     stop_words = set(stopwords.words('spanish'))
     for i in stop_words:
